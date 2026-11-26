@@ -1,5 +1,5 @@
 {
-  "contest_name": "ACM第三次考核",
+  "contest_name": "SICNU ACM第三次考核",
   "start_time": 1795928400,
   "end_time": 1795946400,
   "frozen_time": 0,
@@ -41,8 +41,8 @@
   "medal": "icpc",
   "options": {
     "enable_organization": true,
-    "disable_pending_page": true,
-    "disablePendingPage": true
+    "disable_pending_page": false,
+    "disablePendingPage": false
   },
   "balloon_color": [
     {
