@@ -1,0 +1,416 @@
+{
+  "kh_26_1_2026110112": {
+    "team_id": "kh_26_1_2026110112",
+    "name": "黄锦锋",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_1_2026110144": {
+    "team_id": "kh_26_1_2026110144",
+    "name": "曾伟皓",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_1_2026110150": {
+    "team_id": "kh_26_1_2026110150",
+    "name": "邹知希",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_1_2026490127": {
+    "team_id": "kh_26_1_2026490127",
+    "name": "彭久洋",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_2_2026110241": {
+    "team_id": "kh_26_2_2026110241",
+    "name": "于洋",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_2_2026110245": {
+    "team_id": "kh_26_2_2026110245",
+    "name": "张耘瑞",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_2_2026490205": {
+    "team_id": "kh_26_2_2026490205",
+    "name": "邓万涛",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_2_2026490231": {
+    "team_id": "kh_26_2_2026490231",
+    "name": "王浩鑫",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_2_2026490243": {
+    "team_id": "kh_26_2_2026490243",
+    "name": "杨梓烨",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_3_2026110308": {
+    "team_id": "kh_26_3_2026110308",
+    "name": "苟茹",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_3_2026110316": {
+    "team_id": "kh_26_3_2026110316",
+    "name": "吉纳石博",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_3_2026110328": {
+    "team_id": "kh_26_3_2026110328",
+    "name": "庞心婷",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_3_2026110333": {
+    "team_id": "kh_26_3_2026110333",
+    "name": "舒慧琳",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_3_2026110335": {
+    "team_id": "kh_26_3_2026110335",
+    "name": "唐玮泽",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_3_2026110342": {
+    "team_id": "kh_26_3_2026110342",
+    "name": "夏鑫远",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_3_2026110345": {
+    "team_id": "kh_26_3_2026110345",
+    "name": "杨雨昕",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_4_2026110405": {
+    "team_id": "kh_26_4_2026110405",
+    "name": "陈珂",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_4_2026110410": {
+    "team_id": "kh_26_4_2026110410",
+    "name": "胡诗杰",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_4_2026110412": {
+    "team_id": "kh_26_4_2026110412",
+    "name": "黄浚杰",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_4_2026110422": {
+    "team_id": "kh_26_4_2026110422",
+    "name": "刘翔",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_4_2026110437": {
+    "team_id": "kh_26_4_2026110437",
+    "name": "王志洪",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_4_2026110444": {
+    "team_id": "kh_26_4_2026110444",
+    "name": "张俊篪",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_4_2026110449": {
+    "team_id": "kh_26_4_2026110449",
+    "name": "周晨坤",
+    "organization": "考核",
+    "official": 1
+  },
+  "dx_26_4_2026510405": {
+    "team_id": "dx_26_4_2026510405",
+    "name": "宫嘉怡",
+    "organization": "打星",
+    "unofficial": 1
+  },
+  "kh_26_5_2026110545": {
+    "team_id": "kh_26_5_2026110545",
+    "name": "曾鑫琳",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_5_2026110556": {
+    "team_id": "kh_26_5_2026110556",
+    "name": "赵君浩",
+    "organization": "考核",
+    "official": 1
+  },
+  "dx_26_6_2026190607": {
+    "team_id": "dx_26_6_2026190607",
+    "name": "高驰轩",
+    "organization": "打星",
+    "unofficial": 1
+  },
+  "dx_26_8_2026060845": {
+    "team_id": "dx_26_8_2026060845",
+    "name": "张耀天",
+    "organization": "打星",
+    "unofficial": 1
+  },
+  "kh_26_1_2026110109": {
+    "team_id": "kh_26_1_2026110109",
+    "name": "胡博靖",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_1_2026110119": {
+    "team_id": "kh_26_1_2026110119",
+    "name": "林熙雅",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_1_2026110123": {
+    "team_id": "kh_26_1_2026110123",
+    "name": "刘俊琦",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_1_2026110126": {
+    "team_id": "kh_26_1_2026110126",
+    "name": "刘旭彤",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_1_2026110127": {
+    "team_id": "kh_26_1_2026110127",
+    "name": "刘志强",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_1_2026110137": {
+    "team_id": "kh_26_1_2026110137",
+    "name": "王佳语熙",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_1_2026110140": {
+    "team_id": "kh_26_1_2026110140",
+    "name": "王语茜",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_1_2026490138": {
+    "team_id": "kh_26_1_2026490138",
+    "name": "杨安琪",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_2_2026110204": {
+    "team_id": "kh_26_2_2026110204",
+    "name": "冯已稀",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_2_2026110225": {
+    "team_id": "kh_26_2_2026110225",
+    "name": "任欧译",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_2_2026110235": {
+    "team_id": "kh_26_2_2026110235",
+    "name": "熊佳",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_2_2026110240": {
+    "team_id": "kh_26_2_2026110240",
+    "name": "游尚阳",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_2_2026110247": {
+    "team_id": "kh_26_2_2026110247",
+    "name": "赵运生",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_2_2026490204": {
+    "team_id": "kh_26_2_2026490204",
+    "name": "邓翱",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_2_2026490223": {
+    "team_id": "kh_26_2_2026490223",
+    "name": "彭如垚",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_2_2026490249": {
+    "team_id": "kh_26_2_2026490249",
+    "name": "张涵哲",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_2_2026510223": {
+    "team_id": "kh_26_2_2026510223",
+    "name": "徐一丹",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_3_2026110369": {
+    "team_id": "kh_26_3_2026110369",
+    "name": "李子涵",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_3_2026110302": {
+    "team_id": "kh_26_3_2026110302",
+    "name": "曹家乐",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_3_2026110305": {
+    "team_id": "kh_26_3_2026110305",
+    "name": "范珈铭",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_3_2026110315": {
+    "team_id": "kh_26_3_2026110315",
+    "name": "黄挥翔",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_3_2026110319": {
+    "team_id": "kh_26_3_2026110319",
+    "name": "瞿兆琪",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_3_2026110323": {
+    "team_id": "kh_26_3_2026110323",
+    "name": "李伟恒",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_3_2026110327": {
+    "team_id": "kh_26_3_2026110327",
+    "name": "米钊佑",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_3_2026110330": {
+    "team_id": "kh_26_3_2026110330",
+    "name": "祁子恒",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_3_2026110348": {
+    "team_id": "kh_26_3_2026110348",
+    "name": "张烨",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_4_2026110411": {
+    "team_id": "kh_26_4_2026110411",
+    "name": "胡钊波",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_4_2026110415": {
+    "team_id": "kh_26_4_2026110415",
+    "name": "赖丽熔",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_4_2026110418": {
+    "team_id": "kh_26_4_2026110418",
+    "name": "李东泽",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_4_2026110423": {
+    "team_id": "kh_26_4_2026110423",
+    "name": "刘栩辰",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_4_2026110427": {
+    "team_id": "kh_26_4_2026110427",
+    "name": "罗英豪",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_4_2026110431": {
+    "team_id": "kh_26_4_2026110431",
+    "name": "青海斌",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_4_2026110435": {
+    "team_id": "kh_26_4_2026110435",
+    "name": "王启瑞",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_4_2026110442": {
+    "team_id": "kh_26_4_2026110442",
+    "name": "曾治诚",
+    "organization": "考核",
+    "official": 1
+  },
+  "kh_26_5_2026110503": {
+    "team_id": "kh_26_5_2026110503",
+    "name": "陈涵宇",
+    "organization": "考核",
+    "official": 1
+  },
+  "dx_26_6_2026100631": {
+    "team_id": "dx_26_6_2026100631",
+    "name": "宋鑫淦",
+    "organization": "打星",
+    "unofficial": 1
+  },
+  "kh_26_1_2026490126": {
+    "team_id": "kh_26_1_2026490126",
+    "name": "孟梓岳",
+    "organization": "考核",
+    "official": 1
+  },
+  "dx_25_1_2025110109": {
+    "team_id": "dx_25_1_2025110109",
+    "name": "付纭悦",
+    "organization": "打星",
+    "unofficial": 1
+  },
+  "dx_25_1_2025110143": {
+    "team_id": "dx_25_1_2025110143",
+    "name": "余幼妮",
+    "organization": "打星",
+    "unofficial": 1
+  },
+  "cs_25_1_2025110304": {
+    "team_id": "cs_25_1_2025110304",
+    "name": "备用",
+    "organization": "打星",
+    "unofficial": 1
+  },
+  "dx_25_1_1145141919": {
+    "team_id": "dx_25_1_1145141919",
+    "name": "神秘嘉宾",
+    "organization": "打星",
+    "unofficial": 1
+  }
+}

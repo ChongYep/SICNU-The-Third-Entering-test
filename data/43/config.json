@@ -1,0 +1,109 @@
+{
+  "contest_name": "ACM第三次考核",
+  "start_time": 1795928400,
+  "end_time": 1795946400,
+  "frozen_time": 0,
+  "problem_id": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O"
+  ],
+  "group": {
+    "official": "考核",
+    "unofficial": "打星"
+  },
+  "organization": "类别",
+  "status_time_display": {
+    "correct": 1,
+    "incorrect": 1,
+    "pending": 1,
+    "wrong_answer": 1,
+    "compilation_error": 1,
+    "time_limit_exceeded": 1,
+    "memory_limit_exceeded": 1,
+    "runtime_error": 1,
+    "system_error": 1,
+    "partially_correct": 1
+  },
+  "penalty": 1200,
+  "medal": "icpc",
+  "options": {
+    "enable_organization": true,
+    "disable_pending_page": true,
+    "disablePendingPage": true
+  },
+  "balloon_color": [
+    {
+      "background_color": "rgba(211, 47, 47, 0.85)",
+      "color": "#fff"
+    },
+    {
+      "background_color": "rgba(244, 143, 177, 0.85)",
+      "color": "#000"
+    },
+    {
+      "background_color": "rgba(255, 255, 255, 0.90)",
+      "color": "#000"
+    },
+    {
+      "background_color": "rgba(46, 175, 70, 0.85)",
+      "color": "#fff"
+    },
+    {
+      "background_color": "rgba(245, 215, 20, 0.90)",
+      "color": "#000"
+    },
+    {
+      "background_color": "rgba(245, 110, 24, 0.85)",
+      "color": "#fff"
+    },
+    {
+      "background_color": "rgba(21, 101, 192, 0.85)",
+      "color": "#fff"
+    },
+    {
+      "background_color": "rgba(144, 164, 174, 0.85)",
+      "color": "#000"
+    },
+    {
+      "background_color": "rgba(0, 150, 136, 0.85)",
+      "color": "#fff"
+    },
+    {
+      "background_color": "rgba(156, 39, 176, 0.85)",
+      "color": "#fff"
+    },
+    {
+      "background_color": "rgba(0, 188, 212, 0.85)",
+      "color": "#000"
+    },
+    {
+      "background_color": "rgba(121, 85, 72, 0.85)",
+      "color": "#fff"
+    },
+    {
+      "background_color": "rgba(33, 33, 33, 0.85)",
+      "color": "#fff"
+    },
+    {
+      "background_color": "rgba(63, 81, 181, 0.85)",
+      "color": "#fff"
+    },
+    {
+      "background_color": "rgba(139, 195, 74, 0.85)",
+      "color": "#000"
+    }
+  ]
+}
