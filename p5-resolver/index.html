@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SICNU ACM 第三次考核 · Persona 5 终榜滚榜系统</title>
+  <script>
+    window.DATA_HOST = "../data/";
+    window.DEFAULT_CONTEST_DS = "/43/";
+    window.STATIC_PUBLIC_SITE = true;
+  </script>
+  <link rel="stylesheet" href="./p5-resolver.css" />
+</head>
+<body>
+  <!-- Animated Persona 5 Halftone + Radial Speedlines + Rotating Star Backdrop -->
+  <div class="p5-bg" aria-hidden="true">
+    <div class="p5-bg-halftone"></div>
+    <div class="p5-bg-rays"></div>
+    <div class="p5-bg-star"></div>
+    <div class="p5-bg-vignette"></div>
+  </div>
+
+  <!-- Main Stage App Shell -->
+  <div id="app" class="p5-app">
+    <!-- Top Persona 5 Calling-Card Header (Clean 2-Tier Zero-Overlap Layout) -->
+    <header class="p5-header">
+      <div class="p5-header-top">
+        <div class="p5-header-left">
+          <div class="p5-brand-tag">P5 RESOLVER</div>
+          <h1 id="contestTitle" class="p5-ransom-title" aria-label="SICNU ACM 第三次考核"></h1>
+        </div>
+
+        <div class="p5-header-center">
+          <div class="p5-progress-meta">
+            <span id="dataModeBadge" class="p5-mode-pill live">LIVE #43</span>
+            <span id="statusText" class="p5-status-text">就绪 · 等待滚榜启动</span>
+            <span id="pendingCounter" class="p5-pending-counter">待揭示 <b>0</b> / 0</span>
+          </div>
+          <div class="p5-progress-track">
+            <div id="progressFill" class="p5-progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p5-toolbar">
+        <div class="p5-controls-group">
+          <button id="btnStep" class="p5-btn p5-btn-primary" title="下一步揭示 (Space / →)">
+            <span class="btn-icon">▶</span><span>单步</span><kbd>Space</kbd>
+          </button>
+          <button id="btnAuto" class="p5-btn" title="自动滚榜 / 暂停 (A)">
+            <span class="btn-icon">⚡</span><span id="autoLabel">自动</span><kbd>A</kbd>
+          </button>
+          <select id="speedSelect" class="p5-select" title="滚榜节奏">
+            <option value="slow">悬念慢速</option>
+            <option value="normal" selected>标准节奏</option>
+            <option value="fast">高速推进</option>
+          </select>
+          <button id="btnFastTop" class="p5-btn" title="快进至前 15 名高潮段 (S)">
+            <span>快进前15</span><kbd>S</kbd>
+          </button>
+          <button id="btnUndo" class="p5-btn" title="撤销上一步 (← / Backspace)">
+            <span>撤销</span><kbd>←</kbd>
+          </button>
+          <button id="btnReset" class="p5-btn" title="重置到封榜初始状态 (R)">
+            <span>重置</span><kbd>R</kbd>
+          </button>
+        </div>
+
+        <div class="p5-controls-group">
+          <button id="btnGroup" class="p5-btn" title="切换全员 / 正式考核 / 打星 (G)">
+            <span id="groupLabel">全员</span><kbd>G</kbd>
+          </button>
+          <button id="btnBgm" class="p5-btn" title="《Life Will Change》配乐开关 (M)">
+            <span id="bgmLabel">♪ BGM</span><kbd>M</kbd>
+          </button>
+          <button id="btnDemo" class="p5-btn p5-btn-accent" title="切换真实 OJ 数据 / 69 人仿真演练 (D)">
+            <span id="demoLabel">演练模式</span><kbd>D</kbd>
+          </button>
+          <button id="btnCoronation" class="p5-btn p5-btn-gold" title="触发原版总攻击 & 冠军加冕仪式 (C)">
+            <span>★ 总攻击加冕</span><kbd>C</kbd>
+          </button>
+          <button id="btnFullscreen" class="p5-btn" title="全屏大屏投影 (F)">
+            <span>全屏</span><kbd>F</kbd>
+          </button>
+          <a id="classicLink" class="p5-btn p5-btn-ghost" href="../board/?data-source=/43/" title="返回外榜与怪盗预告信">← 返回外榜</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sticky Column Header with Real 15 Contest #43 Balloon Badges -->
+    <div id="boardHeader" class="p5-board-header">
+      <div class="col-rank">RANK</div>
+      <div class="col-team">CONTESTANT / 考场</div>
+      <div class="col-stat">SOLVED</div>
+      <div class="col-pen">PENALTY</div>
+      <div id="problemHeaders" class="col-problems"></div>
+    </div>
+
+    <!-- Main 60fps FLIP Standings Viewport -->
+    <main id="boardViewport" class="p5-viewport" tabindex="0">
+      <div id="boardList" class="p5-board-list"></div>
+      <div id="emptyState" class="p5-empty hidden">
+        <div class="p5-empty-box">
+          <h2>暂无可滚榜的比赛提交数据</h2>
+          <p id="emptyDesc">当前比赛尚未开始或未产生封榜提交。可点击上方「演练模式 (D)」立即体验完整 69 人 Persona 5 滚榜动画！</p>
+          <button id="btnEmptyDemo" class="p5-btn p5-btn-gold">⚡ 启动 69 人仿真演练</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom-Right Futaba Navigator Live Commentary HUD -->
+    <aside id="futabaHud" class="p5-futaba-hud">
+      <div class="futaba-bubble">
+        <div class="futaba-speaker">ORACLE · 赛场领航</div>
+        <div id="futabaText" class="futaba-text">全员就位！按 <b>Space</b> 锁定首个封榜提交，或按 <b>A</b> 启动自动滚榜！</div>
+      </div>
+      <div class="futaba-avatar-frame">
+        <img src="./assets/futaba_nav.jpg" alt="Oracle Navigator" />
+      </div>
+    </aside>
+
+    <!-- Floating Keyboard Hint Pill (bottom-left) -->
+    <div class="p5-hotkey-bar">
+      <span><kbd>Space</kbd> 锁定/揭示</span>
+      <span><kbd>A</kbd> 自动滚榜</span>
+      <span><kbd>S</kbd> 快进前15</span>
+      <span><kbd>←</kbd> 撤销</span>
+      <span><kbd>M</kbd> Life Will Change</span>
+      <span><kbd>C</kbd> 总攻击加冕</span>
+      <span><kbd>F</kbd> 全屏</span>
+    </div>
+  </div>
+
+  <!-- Dramatic Persona 5 Character Eye Cut-In Overlay (Rank Jump / Top 10 / #1 Takeover) -->
+  <div id="cutinOverlay" class="p5-cutin-overlay hidden" aria-hidden="true">
+    <div class="cutin-band">
+      <div class="cutin-speedlines"></div>
+      <img id="cutinImg" class="cutin-img" src="./assets/joker_cutin.png" alt="Cut-In" />
+      <div class="cutin-caption">
+        <div id="cutinTag" class="cutin-tag">1 MORE!! RANK UP</div>
+        <div id="cutinMain" class="cutin-main">张烨  直冲榜首!!</div>
+        <div id="cutinSub" class="cutin-sub">403 考场 · AC 题 G · 排名跃升 +5</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Verdict Flash Stamp (AC!! / MISS / FIRST BLOOD!) -->
+  <div id="verdictFlash" class="p5-verdict-flash hidden" aria-hidden="true">
+    <div id="verdictBadge" class="verdict-badge">AC!!</div>
+  </div>
+
+  <!-- Grand Finale: Original Persona 5 All-Out Attack Video + Champion Coronation Podium -->
+  <div id="coronationOverlay" class="p5-coronation-overlay hidden">
+    <!-- Phase 1: Original Persona 5 All-Out Attack Video -->
+    <video id="aoaVideo" class="aoa-video" playsinline preload="auto" muted>
+      <source src="./assets/aoa_orig.mp4" type="video/mp4" />
+    </video>
+    <button id="btnSkipAoa" class="p5-btn p5-skip-aoa hidden">跳过总攻击动画 ⏭</button>
+
+    <!-- Phase 2: 4K Joker Finishing Touch Backdrop + Real Champion & Top 3 Podium -->
+    <div id="podiumStage" class="podium-stage hidden">
+      <img class="podium-bg-img" src="./assets/finisher_clean.jpg" alt="Joker Finishing Touch" />
+      <div class="podium-content">
+        <div class="podium-eyebrow">SICNU ACM 第三次考核 · ALL OUT AC!!</div>
+        <div id="champTitleRansom" class="podium-ransom"></div>
+        <div class="champ-card">
+          <div class="champ-crown">👑 #1 CHAMPION</div>
+          <div id="champName" class="champ-name">张 烨</div>
+          <div id="champMeta" class="champ-meta">403 考场  ·  12 题  ·  罚时 1024</div>
+        </div>
+        <div class="podium-runners">
+          <div class="runner-card silver">
+            <span class="runner-rank">🥈 #2</span>
+            <span id="runner2Name" class="runner-name">—</span>
+            <span id="runner2Meta" class="runner-meta">—</span>
+          </div>
+          <div class="runner-card bronze">
+            <span class="runner-rank">🥉 #3</span>
+            <span id="runner3Name" class="runner-name">—</span>
+            <span id="runner3Meta" class="runner-meta">—</span>
+          </div>
+        </div>
+        <div class="podium-actions">
+          <button id="btnReplayAoa" class="p5-btn p5-btn-gold">★ 重播总攻击加冕</button>
+          <button id="btnCloseCoronation" class="p5-btn p5-btn-primary">返回最终总榜</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Official Persona 5 OST "Life Will Change" Audio Element -->
+  <audio id="bgmAudio" loop preload="auto">
+    <source src="./assets/life_will_change.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script src="./p5-audio.js"></script>
+  <script src="./resolver-engine.js"></script>
+  <script src="./p5-resolver.js"></script>
+</body>
+</html>

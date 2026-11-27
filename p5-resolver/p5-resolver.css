@@ -1,0 +1,1407 @@
+/* ============================================================================
+ * Persona 5 Royal × ICPC Live Scoreboard Resolver Stylesheet
+ * 1920x1080 Projector-First · 60fps FLIP GPU-Accelerated · Zero Horizontal Overflow
+ * ============================================================================ */
+
+@font-face {
+  font-family: "YouSheBiaoTiHei";
+  src: url("./assets/youshe.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  --p5-red: #e60012;
+  --p5-crimson: #b20816;
+  --p5-dark-red: #6a030c;
+  --p5-black: #0b0b0e;
+  --p5-charcoal: #17171f;
+  --p5-panel: #1f202a;
+  --p5-white: #f8f7f1;
+  --p5-cream: #e8e4d6;
+  --p5-gold: #ffd400;
+  --p5-silver: #dbe3ec;
+  --p5-bronze: #f09c5a;
+  --p5-cyan: #00deff;
+  --p5-blue: #1565c0;
+  --p5-green: #24d05c;
+  --p5-green-dark: #106e32;
+  --font-display: "YouSheBiaoTiHei", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --font-num: "Impact", "Arial Black", "YouSheBiaoTiHei", sans-serif;
+  --font-ui: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--p5-black);
+  color: var(--p5-white);
+  font-family: var(--font-ui);
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+ * Animated Persona 5 Halftone + Radial Speedlines + Rotating Star Backdrop
+ * -------------------------------------------------------------------------- */
+.p5-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at 18% 12%, #c90010 0%, #6e020a 36%, #0b0b0e 78%);
+}
+
+.p5-bg-halftone {
+  position: absolute;
+  inset: -40px;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.36) 2.2px, transparent 2.4px);
+  background-size: 18px 18px;
+  transform: rotate(-14deg);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.p5-bg-rays {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 240vmax;
+  height: 240vmax;
+  margin-left: -120vmax;
+  margin-top: -120vmax;
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(230, 0, 18, 0.16) 0deg 4deg,
+    transparent 4deg 14deg
+  );
+  animation: p5SlowSpin 95s linear infinite;
+  pointer-events: none;
+}
+
+.p5-bg-star {
+  position: absolute;
+  right: -120px;
+  bottom: -140px;
+  width: 680px;
+  height: 680px;
+  background: rgba(230, 0, 18, 0.14);
+  clip-path: polygon(50% 0%, 62% 36%, 100% 38%, 69% 60%, 80% 96%, 50% 74%, 20% 96%, 31% 60%, 0% 38%, 38% 36%);
+  animation: p5SlowSpin 70s linear infinite reverse;
+  pointer-events: none;
+}
+
+.p5-bg-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 48%, rgba(5, 5, 8, 0.72) 100%);
+  pointer-events: none;
+}
+
+@keyframes p5SlowSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* --------------------------------------------------------------------------
+ * App Shell & Top Persona 5 Calling-Card Header
+ * -------------------------------------------------------------------------- */
+.p5-app {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.p5-header {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(102deg, var(--p5-black) 0%, #17060a 54%, var(--p5-black) 100%);
+  border-bottom: 4px solid var(--p5-white);
+  box-shadow: 0 5px 0 var(--p5-red), 0 10px 24px rgba(0, 0, 0, 0.72);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.p5-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 9px 22px 8px 22px;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.14);
+}
+
+.p5-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.p5-brand-tag {
+  display: inline-block;
+  background: var(--p5-gold);
+  color: var(--p5-black);
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 3px 11px;
+  transform: skewX(-12deg);
+  border: 2px solid var(--p5-black);
+  box-shadow: 3px 3px 0 var(--p5-red);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.p5-ransom-title {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 3px;
+  font-size: 22px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.ransom-ch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  font-family: var(--font-display);
+  font-weight: 900;
+  border: 2px solid var(--p5-white);
+  box-shadow: 3px 3px 0 #000;
+  line-height: 1.05;
+}
+.ransom-ch.t0 { background: var(--p5-black); color: var(--p5-white); border-color: var(--p5-white); }
+.ransom-ch.t1 { background: var(--p5-white); color: var(--p5-black); border-color: var(--p5-black); }
+.ransom-ch.t2 { background: var(--p5-red); color: var(--p5-white); border-color: var(--p5-white); }
+.ransom-ch.t3 { background: var(--p5-black); color: var(--p5-gold); border-color: var(--p5-red); }
+.ransom-word {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  white-space: nowrap;
+}
+.ransom-space { width: 10px; display: inline-block; }
+
+.p5-header-center {
+  flex: 1;
+  min-width: 280px;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.p5-progress-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.p5-mode-pill {
+  padding: 2px 10px;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  transform: skewX(-10deg);
+  border: 2px solid var(--p5-white);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.p5-mode-pill.live { background: var(--p5-red); color: var(--p5-white); }
+.p5-mode-pill.demo { background: var(--p5-gold); color: var(--p5-black); border-color: var(--p5-black); }
+
+.p5-status-text {
+  flex: 1;
+  min-width: 0;
+  color: var(--p5-cream);
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.p5-pending-counter {
+  color: var(--p5-cyan);
+  font-weight: 800;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.p5-pending-counter b {
+  color: var(--p5-gold);
+  font-family: var(--font-num);
+  font-size: 16px;
+}
+
+.p5-progress-track {
+  height: 10px;
+  background: #14151d;
+  border: 2px solid var(--p5-white);
+  transform: skewX(-16deg);
+  overflow: hidden;
+  box-shadow: 3px 3px 0 #000;
+}
+
+.p5-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--p5-red) 0%, #ff3b1f 65%, var(--p5-gold) 100%);
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Row 2: Dedicated Sleek Operator Toolbar (Zero crowding, zero wrapping!) */
+.p5-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 22px 7px 22px;
+  background: rgba(12, 12, 18, 0.92);
+}
+
+.p5-controls-group {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: nowrap;
+}
+
+.p5-btn, .p5-select {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  background: var(--p5-charcoal);
+  color: var(--p5-white);
+  border: 2px solid var(--p5-white);
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  font-weight: 800;
+  white-space: nowrap;
+  cursor: pointer;
+  transform: skewX(-10deg);
+  box-shadow: 3px 3px 0 #000;
+  text-decoration: none;
+  transition: transform 0.12s ease, background 0.12s ease, color 0.12s ease;
+}
+
+.p5-btn > *, .p5-select {
+  transform: none;
+}
+
+.p5-btn:hover {
+  background: var(--p5-white);
+  color: var(--p5-black);
+  transform: skewX(-10deg) translate(-1px, -1px);
+}
+.p5-btn:active {
+  transform: skewX(-10deg) translate(1px, 1px);
+}
+.p5-btn.active {
+  background: var(--p5-cyan);
+  color: var(--p5-black);
+  border-color: var(--p5-black);
+}
+
+.p5-btn-primary {
+  background: var(--p5-red);
+  color: var(--p5-white);
+  border-color: var(--p5-white);
+}
+.p5-btn-primary:hover {
+  background: #ff1e2f;
+  color: var(--p5-white);
+}
+
+.p5-btn-gold {
+  background: var(--p5-gold);
+  color: var(--p5-black);
+  border-color: var(--p5-black);
+}
+.p5-btn-gold:hover {
+  background: #ffe44d;
+  color: var(--p5-black);
+}
+
+.p5-btn-accent {
+  border-color: var(--p5-gold);
+  color: var(--p5-gold);
+}
+
+.p5-btn-ghost {
+  background: transparent;
+  border-color: rgba(248, 247, 241, 0.45);
+  color: rgba(248, 247, 241, 0.8);
+  font-size: 12px;
+}
+
+.p5-select {
+  padding-right: 14px;
+  background: #14151d;
+}
+
+kbd {
+  display: inline-block;
+  padding: 1px 4px;
+  font-family: monospace;
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.55);
+  color: var(--p5-gold);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 2px;
+}
+
+/* --------------------------------------------------------------------------
+ * Sticky Problem Header Strip (Aligned 1:1 with Standings Grid)
+ * -------------------------------------------------------------------------- */
+.p5-board-header {
+  display: grid;
+  grid-template-columns: 74px 235px 72px 86px 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 24px 8px 26px;
+  background: rgba(11, 11, 14, 0.94);
+  border-bottom: 3px solid var(--p5-gold);
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 0.8px;
+  color: var(--p5-gold);
+  flex-shrink: 0;
+  z-index: 8;
+}
+
+.p5-board-header .col-rank,
+.p5-board-header .col-stat,
+.p5-board-header .col-pen {
+  text-align: center;
+}
+
+.col-problems {
+  display: grid;
+  grid-template-columns: repeat(var(--prob-count, 15), minmax(0, 1fr));
+  gap: 5px;
+}
+
+.prob-hdr-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 2px;
+  background: #1b1c26;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  transform: skewX(-8deg);
+  position: relative;
+}
+
+.prob-hdr-top {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transform: skewX(8deg);
+}
+
+.prob-balloon-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1.5px solid #000;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.55);
+  flex-shrink: 0;
+}
+
+.prob-hdr-letter {
+  font-family: var(--font-num);
+  font-size: 16px;
+  color: var(--p5-white);
+  line-height: 1;
+}
+
+.prob-hdr-count {
+  transform: skewX(8deg);
+  font-family: var(--font-ui);
+  font-size: 10px;
+  color: #aeb4c6;
+  font-weight: 700;
+  margin-top: 1px;
+}
+
+/* --------------------------------------------------------------------------
+ * Main FLIP Standings Stage
+ * -------------------------------------------------------------------------- */
+.p5-viewport {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 14px 24px 128px 26px;
+  scroll-behavior: smooth;
+  position: relative;
+  outline: none;
+}
+
+.p5-viewport::-webkit-scrollbar {
+  width: 8px;
+}
+.p5-viewport::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.45);
+}
+.p5-viewport::-webkit-scrollbar-thumb {
+  background: var(--p5-red);
+  border: 1px solid var(--p5-white);
+}
+
+.p5-board-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  position: relative;
+}
+
+/* Individual Persona 5 Team Row */
+.team-row {
+  display: grid;
+  grid-template-columns: 74px 235px 72px 86px 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px 7px 10px;
+  background: linear-gradient(96deg, rgba(18, 19, 27, 0.94) 0%, rgba(26, 27, 38, 0.92) 100%);
+  border: 2.5px solid rgba(248, 247, 241, 0.22);
+  border-left: 7px solid #44485a;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.65);
+  transform: skewX(-4deg);
+  position: relative;
+  will-change: transform;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.team-row > * {
+  transform: skewX(4deg);
+}
+
+/* Medal Tier Left Bars & Subtle Prestige Tint */
+.team-row.medal-gold {
+  border-left-color: var(--p5-gold);
+  background: linear-gradient(96deg, rgba(46, 36, 8, 0.95) 0%, rgba(24, 24, 34, 0.93) 55%);
+}
+.team-row.medal-silver {
+  border-left-color: var(--p5-silver);
+}
+.team-row.medal-bronze {
+  border-left-color: var(--p5-bronze);
+}
+.team-row.is-unofficial {
+  border-left-color: var(--p5-cyan);
+  border-left-style: dashed;
+}
+
+.team-row.is-finalized {
+  border-color: rgba(248, 247, 241, 0.34);
+}
+
+/* ACTIVE TARGETED ROW (Persona 5 Red/Gold Spotlight!) */
+.team-row.is-active {
+  z-index: 6;
+  background: linear-gradient(96deg, #b80010 0%, #6d040f 42%, #191924 100%);
+  border-color: var(--p5-gold);
+  border-width: 3px;
+  border-left: 10px solid var(--p5-gold);
+  box-shadow: 0 0 0 3px #000, 0 0 28px rgba(255, 212, 0, 0.45), 9px 9px 0 #000;
+}
+
+.team-row.is-active::before {
+  content: "★";
+  position: absolute;
+  left: -24px;
+  top: 50%;
+  transform: translateY(-50%) skewX(4deg);
+  color: var(--p5-gold);
+  font-size: 24px;
+  text-shadow: 2px 2px 0 #000, -1px -1px 0 #000;
+  animation: p5StarPulse 0.65s ease-in-out infinite alternate;
+}
+
+@keyframes p5StarPulse {
+  from { transform: translateY(-50%) skewX(4deg) scale(0.95) rotate(-10deg); }
+  to { transform: translateY(-50%) skewX(4deg) scale(1.22) rotate(10deg); }
+}
+
+/* Climbing Trail Glow */
+.team-row.is-climbing {
+  z-index: 9 !important;
+  border-color: var(--p5-white) !important;
+  box-shadow: 0 0 0 3px var(--p5-red), 0 0 36px rgba(255, 212, 0, 0.78), 10px 10px 0 #000 !important;
+}
+
+/* Recoil Shake on WA */
+.team-row.is-shake {
+  animation: p5RowShake 0.42s ease;
+}
+@keyframes p5RowShake {
+  0%, 100% { transform: skewX(-4deg) translateX(0); }
+  20% { transform: skewX(-4deg) translateX(-11px); }
+  40% { transform: skewX(-4deg) translateX(10px); }
+  60% { transform: skewX(-4deg) translateX(-7px); }
+  80% { transform: skewX(-4deg) translateX(5px); }
+}
+
+/* Rank Badge Cell */
+.rank-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.rank-badge {
+  min-width: 58px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--p5-black);
+  color: var(--p5-white);
+  font-family: var(--font-num);
+  font-size: 25px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  transform: skewX(-10deg);
+  box-shadow: 3px 3px 0 #000;
+}
+.rank-badge span { transform: skewX(10deg); }
+
+.team-row.rank-1 .rank-badge {
+  background: var(--p5-gold);
+  color: var(--p5-black);
+  border-color: var(--p5-white);
+  font-size: 28px;
+}
+.team-row.rank-2 .rank-badge {
+  background: var(--p5-silver);
+  color: var(--p5-black);
+  border-color: var(--p5-white);
+}
+.team-row.rank-3 .rank-badge {
+  background: var(--p5-bronze);
+  color: var(--p5-black);
+  border-color: var(--p5-white);
+}
+.team-row.is-unofficial .rank-badge {
+  background: #102a3d;
+  color: var(--p5-gold);
+  border-color: var(--p5-cyan);
+}
+
+.rank-delta-pill {
+  position: absolute;
+  top: -12px;
+  right: -10px;
+  background: var(--p5-gold);
+  color: var(--p5-black);
+  font-family: var(--font-num);
+  font-size: 14px;
+  padding: 1px 6px;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0 var(--p5-red);
+  animation: deltaPop 1.5s ease forwards;
+  z-index: 12;
+}
+@keyframes deltaPop {
+  0% { opacity: 0; transform: scale(0.4) translateY(8px); }
+  16% { opacity: 1; transform: scale(1.18) translateY(-4px); }
+  75% { opacity: 1; transform: scale(1.0) translateY(-4px); }
+  100% { opacity: 0; transform: scale(0.85) translateY(-16px); }
+}
+
+/* Team Info Cell */
+.team-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.team-name-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.team-name {
+  font-family: var(--font-display);
+  font-size: 23px;
+  color: var(--p5-white);
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 2px 2px 0 #000;
+}
+.team-row.is-unofficial .team-name {
+  color: var(--p5-gold);
+}
+
+.team-star {
+  color: var(--p5-gold);
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* Player-Row First-Blood Hunter Micro-Badge (P5 Two-Tone Calling-Card Tag) */
+.fb-hunter-badge {
+  display: inline-flex;
+  align-items: stretch;
+  flex-shrink: 0;
+  border: 1.5px solid var(--p5-white);
+  box-shadow: 2px 2px 0 #000;
+  transform: skewX(-10deg);
+  line-height: 1;
+  overflow: hidden;
+  margin-left: 2px;
+}
+
+.fb-hunter-badge .fb-h-tag {
+  background: var(--p5-red);
+  color: var(--p5-white);
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 900;
+  padding: 2px 4px;
+  letter-spacing: 0.3px;
+}
+
+.fb-hunter-badge .fb-h-probs {
+  background: var(--p5-black);
+  color: var(--p5-gold);
+  font-family: var(--font-num);
+  font-size: 11px;
+  font-weight: 900;
+  padding: 2px 5px;
+  letter-spacing: 0.4px;
+  border-left: 1.5px solid var(--p5-gold);
+}
+
+.team-meta-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.room-tag {
+  padding: 1px 6px;
+  font-size: 11px;
+  font-weight: 800;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+}
+.room-tag.r402 { background: var(--p5-crimson); color: var(--p5-white); }
+.room-tag.r403 { background: #141622; color: var(--p5-gold); border-color: var(--p5-gold); }
+.room-tag.rother { background: #262938; color: var(--p5-cream); }
+
+.final-tag {
+  color: #82e6a5;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+/* Solved & Penalty Cells */
+.solved-cell {
+  text-align: center;
+  font-family: var(--font-num);
+  font-size: 30px;
+  color: var(--p5-gold);
+  text-shadow: 2px 2px 0 #000;
+  line-height: 1;
+}
+
+.penalty-cell {
+  text-align: center;
+  font-family: var(--font-num);
+  font-size: 20px;
+  color: var(--p5-cream);
+  opacity: 0.92;
+}
+
+/* 15 Problem Cells */
+.prob-cell {
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(34, 36, 48, 0.62);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  transform: skewX(-6deg);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.18s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.prob-cell > * {
+  transform: skewX(6deg);
+}
+
+.prob-cell.st-empty {
+  color: rgba(255, 255, 255, 0.14);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.prob-cell.st-ac {
+  background: linear-gradient(180deg, #27d962 0%, #169c43 100%);
+  border-color: #aef7c6;
+  color: var(--p5-black);
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* P5R Royal Black-Gold Foil First-Blood Card + Overhanging Crimson ★1ST Cutout */
+.prob-cell.st-fb {
+  overflow: visible;
+  z-index: 3;
+  padding-top: 3px;
+  background:
+    radial-gradient(rgba(11, 11, 15, 0.22) 1px, transparent 1.25px) 0 0 / 5px 5px,
+    linear-gradient(
+      125deg,
+      #111118 0%, #111118 16%,
+      #e60012 16.5%, #e60012 20%,
+      #ffe95c 20.5%, #ffd400 52%, #f59e0b 84%,
+      #111118 84.5%, #111118 100%
+    );
+  border: 2px solid var(--p5-white);
+  color: var(--p5-black);
+  box-shadow: 0 0 0 1.5px #000, 0 0 14px rgba(255, 212, 0, 0.68), 3px 3px 0 #000;
+}
+
+.prob-cell.st-fb::before {
+  content: "★";
+  position: absolute;
+  left: 2px;
+  bottom: -4px;
+  font-size: 20px;
+  line-height: 1;
+  color: rgba(11, 11, 15, 0.16);
+  pointer-events: none;
+  transform: skewX(6deg) rotate(-14deg);
+  z-index: 0;
+}
+
+.prob-cell.st-fb::after {
+  content: "★1ST";
+  position: absolute;
+  top: -9px;
+  right: -3px;
+  z-index: 5;
+  background: var(--p5-red);
+  color: var(--p5-white);
+  border: 1.5px solid var(--p5-white);
+  box-shadow: 2px 2px 0 #000;
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+  padding: 1px 4px;
+  line-height: 1.05;
+  transform: skewX(6deg) rotate(-6deg);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.prob-cell.st-fb .fb-foil {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transform: none;
+  z-index: 1;
+}
+
+.prob-cell.st-fb .fb-foil::after {
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: -80%;
+  width: 48%;
+  height: 160%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.72) 50%, transparent 100%);
+  transform: rotate(22deg);
+  animation: p5FbFoilSweep 3.8s ease-in-out infinite;
+}
+
+@keyframes p5FbFoilSweep {
+  0%, 62% { left: -80%; opacity: 0; }
+  68% { opacity: 0.95; }
+  92% { left: 135%; opacity: 0.95; }
+  100% { left: 135%; opacity: 0; }
+}
+
+.prob-cell.st-fb .cell-main,
+.prob-cell.st-fb .cell-sub {
+  position: relative;
+  z-index: 2;
+  color: #0b0b0f;
+}
+
+.prob-cell.st-fb .cell-main {
+  font-weight: 900;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+.prob-cell.st-fb .cell-sub {
+  font-weight: 900;
+  opacity: 0.96;
+}
+
+.prob-cell.st-wa {
+  background: linear-gradient(180deg, #b80c1c 0%, #780510 100%);
+  border-color: rgba(255, 130, 140, 0.55);
+  color: var(--p5-white);
+}
+
+.prob-cell.st-pending {
+  background: linear-gradient(180deg, #00c4f0 0%, #1565c0 100%);
+  border: 2px solid #8ef1ff;
+  color: var(--p5-white);
+  animation: p5PendingPulse 1.35s ease-in-out infinite;
+}
+
+@keyframes p5PendingPulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.25); }
+}
+
+/* TARGETED PENDING CELL (Locked & Shaking with Golden Reticle!) */
+.prob-cell.is-target {
+  z-index: 8;
+  background: linear-gradient(180deg, #ffd400 0%, #ff5500 100%) !important;
+  border: 3px solid var(--p5-white) !important;
+  color: var(--p5-black) !important;
+  box-shadow: 0 0 0 2px #000, 0 0 22px rgba(255, 212, 0, 0.95) !important;
+  animation: p5TargetLock 0.24s ease-in-out infinite alternate !important;
+}
+
+@keyframes p5TargetLock {
+  from { transform: skewX(-6deg) scale(1.08) rotate(-2deg); }
+  to { transform: skewX(-6deg) scale(1.18) rotate(2deg); }
+}
+
+.prob-cell.just-ac {
+  animation: p5AcPop 0.65s cubic-bezier(0.22, 1.35, 0.36, 1);
+}
+@keyframes p5AcPop {
+  0% { transform: skewX(-6deg) scale(1.45); filter: brightness(1.7); }
+  100% { transform: skewX(-6deg) scale(1); filter: brightness(1); }
+}
+
+.prob-cell.just-wa {
+  animation: p5WaPop 0.45s ease;
+}
+@keyframes p5WaPop {
+  0% { transform: skewX(-6deg) scale(1.3); filter: brightness(1.5); }
+  100% { transform: skewX(-6deg) scale(1); filter: brightness(1); }
+}
+
+.cell-main {
+  font-family: var(--font-num);
+  font-size: 16px;
+  line-height: 1.05;
+}
+
+.cell-sub {
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.05;
+  opacity: 0.9;
+}
+
+/* --------------------------------------------------------------------------
+ * Bottom-Right Futaba Navigator Speech HUD
+ * -------------------------------------------------------------------------- */
+.p5-futaba-hud {
+  position: fixed;
+  right: 22px;
+  bottom: 18px;
+  z-index: 25;
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  pointer-events: none;
+}
+
+.futaba-bubble {
+  max-width: 470px;
+  background: var(--p5-black);
+  border: 4px solid var(--p5-white);
+  padding: 10px 22px 10px 18px;
+  transform: skewX(-8deg);
+  box-shadow: 7px 7px 0 var(--p5-red), 11px 11px 0 #000;
+  margin-right: -12px;
+  margin-bottom: 8px;
+}
+
+.futaba-bubble > * {
+  transform: skewX(8deg);
+}
+
+.futaba-speaker {
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--p5-gold);
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+
+.futaba-text {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--p5-white);
+  line-height: 1.35;
+}
+
+.futaba-text b {
+  color: var(--p5-gold);
+}
+
+.futaba-avatar-frame {
+  width: 96px;
+  height: 86px;
+  overflow: hidden;
+  border: 4px solid var(--p5-white);
+  background: var(--p5-red);
+  transform: skewX(-8deg);
+  box-shadow: 6px 6px 0 #000;
+  flex-shrink: 0;
+}
+
+.futaba-avatar-frame img {
+  width: 118%;
+  height: 118%;
+  object-fit: cover;
+  object-position: center 20%;
+  transform: skewX(8deg) translateX(-6%);
+}
+
+.p5-hotkey-bar {
+  position: fixed;
+  left: 22px;
+  bottom: 14px;
+  z-index: 20;
+  display: flex;
+  gap: 12px;
+  padding: 6px 14px;
+  background: rgba(11, 11, 14, 0.86);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  transform: skewX(-10deg);
+  font-size: 12px;
+  color: var(--p5-cream);
+  pointer-events: none;
+}
+.p5-hotkey-bar span {
+  transform: skewX(10deg);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* --------------------------------------------------------------------------
+ * Dramatic Persona 5 Character Eye Cut-In Overlay
+ * -------------------------------------------------------------------------- */
+.p5-cutin-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 8, 12, 0.56);
+  pointer-events: none;
+  animation: cutinFade 0.95s ease forwards;
+}
+
+.p5-cutin-overlay.throne {
+  animation: cutinFade 1.45s ease forwards;
+}
+
+@keyframes cutinFade {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  84% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.cutin-band {
+  width: 114vw;
+  height: 310px;
+  background: linear-gradient(90deg, #0b0b0e 0%, var(--p5-red) 28%, #ff0f22 65%, #0b0b0e 100%);
+  border-top: 10px solid var(--p5-white);
+  border-bottom: 10px solid var(--p5-gold);
+  box-shadow: 0 0 0 6px #000, 0 24px 60px rgba(0, 0, 0, 0.9);
+  transform: rotate(-3.5deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 44px;
+  padding: 0 9vw;
+  position: relative;
+  overflow: hidden;
+  animation: cutinSlam 0.24s cubic-bezier(0.16, 1.25, 0.3, 1);
+}
+
+@keyframes cutinSlam {
+  from { transform: rotate(-3.5deg) scaleY(0.12) translateX(-160px); }
+  to { transform: rotate(-3.5deg) scaleY(1) translateX(0); }
+}
+
+.cutin-speedlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -12deg,
+    rgba(0, 0, 0, 0.25) 0 12px,
+    transparent 12px 32px
+  );
+  pointer-events: none;
+}
+
+.cutin-img {
+  height: 270px;
+  max-width: 48vw;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(10px 8px 0 #000);
+  animation: cutinImgSlide 0.95s ease-out forwards;
+}
+
+@keyframes cutinImgSlide {
+  from { transform: translateX(-80px) scale(1.06); }
+  to { transform: translateX(26px) scale(1); }
+}
+
+.cutin-caption {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cutin-tag {
+  align-self: flex-start;
+  background: var(--p5-gold);
+  color: var(--p5-black);
+  font-family: var(--font-num);
+  font-size: 28px;
+  padding: 4px 18px;
+  border: 4px solid #000;
+  box-shadow: 6px 6px 0 #000;
+  transform: skewX(-10deg);
+}
+
+.cutin-main {
+  font-family: var(--font-display);
+  font-size: 64px;
+  color: var(--p5-white);
+  text-shadow: 6px 6px 0 #000, -2px -2px 0 #000;
+  line-height: 1.05;
+}
+
+.cutin-sub {
+  align-self: flex-start;
+  background: var(--p5-black);
+  color: var(--p5-gold);
+  font-size: 22px;
+  font-weight: 800;
+  padding: 4px 16px;
+  border: 3px solid var(--p5-white);
+  box-shadow: 5px 5px 0 #000;
+}
+
+/* --------------------------------------------------------------------------
+ * Quick Verdict Flash Stamp (AC!! / MISS / FIRST BLOOD!)
+ * -------------------------------------------------------------------------- */
+.p5-verdict-flash {
+  position: fixed;
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%, -50%);
+  z-index: 55;
+  pointer-events: none;
+}
+
+.verdict-badge {
+  font-family: var(--font-num);
+  font-size: 74px;
+  letter-spacing: 3px;
+  padding: 10px 36px;
+  border: 6px solid var(--p5-white);
+  box-shadow: 10px 10px 0 #000;
+  transform: rotate(-7deg) skewX(-8deg);
+  animation: verdictBurst 0.56s cubic-bezier(0.2, 1.35, 0.36, 1) forwards;
+}
+
+.verdict-badge.ac {
+  background: var(--p5-green);
+  color: var(--p5-black);
+  border-color: var(--p5-white);
+}
+.verdict-badge.fb {
+  background: var(--p5-gold);
+  color: var(--p5-black);
+  border-color: var(--p5-red);
+}
+.verdict-badge.wa {
+  background: var(--p5-red);
+  color: var(--p5-white);
+  border-color: var(--p5-black);
+}
+
+@keyframes verdictBurst {
+  0% { opacity: 0; transform: rotate(-12deg) skewX(-8deg) scale(0.3); }
+  26% { opacity: 1; transform: rotate(-6deg) skewX(-8deg) scale(1.12); }
+  75% { opacity: 1; transform: rotate(-6deg) skewX(-8deg) scale(1); }
+  100% { opacity: 0; transform: rotate(-4deg) skewX(-8deg) scale(1.22); }
+}
+
+/* --------------------------------------------------------------------------
+ * Grand Finale: Original P5 All-Out Attack Video + 4K Joker Champion Podium
+ * -------------------------------------------------------------------------- */
+.p5-coronation-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aoa-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #f2000a;
+}
+
+.p5-skip-aoa {
+  position: fixed;
+  right: 26px;
+  bottom: 24px;
+  z-index: 95;
+}
+
+.podium-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  animation: podiumSnap 0.28s cubic-bezier(0.18, 1.2, 0.32, 1);
+}
+
+@keyframes podiumSnap {
+  from { transform: scale(1.08); filter: brightness(1.8); }
+  to { transform: scale(1); filter: brightness(1); }
+}
+
+.podium-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+}
+
+.podium-content {
+  position: relative;
+  z-index: 2;
+  width: 50%;
+  max-width: 780px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  padding: 36px 20px 36px 52px;
+}
+
+.podium-eyebrow {
+  align-self: flex-start;
+  background: var(--p5-black);
+  color: var(--p5-gold);
+  font-family: var(--font-display);
+  font-size: 22px;
+  padding: 6px 20px;
+  border: 4px solid var(--p5-white);
+  transform: rotate(-3deg) skewX(-8deg);
+  box-shadow: 7px 7px 0 #000;
+}
+
+.podium-ransom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 6px;
+  transform: rotate(-3deg);
+}
+.podium-ransom .ransom-ch {
+  font-size: 40px;
+  padding: 4px 9px;
+  border-width: 4px;
+  box-shadow: 5px 5px 0 #000;
+}
+
+.champ-card {
+  align-self: flex-start;
+  min-width: 430px;
+  max-width: 540px;
+  background: var(--p5-black);
+  border: 6px solid var(--p5-gold);
+  padding: 18px 30px;
+  transform: rotate(-2.5deg) skewX(-8deg);
+  box-shadow: 12px 12px 0 #000;
+}
+.champ-card > * { transform: skewX(8deg); }
+
+.champ-crown {
+  font-family: var(--font-num);
+  font-size: 24px;
+  color: var(--p5-gold);
+  letter-spacing: 2px;
+}
+
+.champ-name {
+  font-family: var(--font-display);
+  font-size: 86px;
+  color: var(--p5-white);
+  line-height: 1.08;
+  text-shadow: 6px 6px 0 var(--p5-red);
+  margin: 6px 0;
+}
+
+.champ-meta {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--p5-gold);
+}
+
+.podium-runners {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 560px;
+}
+
+.runner-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 22px;
+  background: rgba(11, 11, 14, 0.92);
+  border: 4px solid var(--p5-white);
+  transform: rotate(-2deg) skewX(-10deg);
+  box-shadow: 7px 7px 0 #000;
+}
+.runner-card > * { transform: skewX(10deg); }
+.runner-card.silver { border-color: var(--p5-silver); }
+.runner-card.bronze { border-color: var(--p5-bronze); }
+
+.runner-rank {
+  font-family: var(--font-num);
+  font-size: 24px;
+  color: var(--p5-gold);
+  min-width: 80px;
+}
+.runner-name {
+  font-family: var(--font-display);
+  font-size: 32px;
+  color: var(--p5-white);
+  min-width: 130px;
+}
+.runner-meta {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--p5-cream);
+}
+
+.podium-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+}
+.podium-actions .p5-btn {
+  padding: 10px 22px;
+  font-size: 17px;
+}
+
+/* Empty State */
+.p5-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+.p5-empty-box {
+  max-width: 600px;
+  text-align: center;
+  background: var(--p5-black);
+  border: 5px solid var(--p5-gold);
+  padding: 36px 40px;
+  transform: skewX(-6deg);
+  box-shadow: 12px 12px 0 var(--p5-red);
+}
+.p5-empty-box > * { transform: skewX(6deg); }
+.p5-empty-box h2 {
+  font-family: var(--font-display);
+  font-size: 34px;
+  color: var(--p5-gold);
+  margin-bottom: 12px;
+}
+.p5-empty-box p {
+  color: var(--p5-cream);
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+/* Laptop / Compact Viewport Adaptation (1280x720) */
+@media (max-width: 1480px) {
+  .p5-header-top { padding: 7px 14px 6px 14px; gap: 14px; }
+  .p5-toolbar { padding: 5px 14px 6px 14px; gap: 8px; }
+  .p5-ransom-title { font-size: 18px; }
+  .ransom-ch { padding: 2px 4px; }
+  .p5-btn, .p5-select { padding: 4px 7px; font-size: 11.5px; gap: 4px; }
+  .p5-controls-group { gap: 5px; }
+  .p5-board-header, .team-row {
+    grid-template-columns: 60px 185px 56px 72px 1fr;
+    gap: 6px;
+  }
+  .team-name { font-size: 19px; }
+  .solved-cell { font-size: 25px; }
+  .penalty-cell { font-size: 16px; }
+  .prob-cell { height: 40px; }
+  .prob-cell.st-fb::after { font-size: 8px; padding: 0 3px; top: -7px; right: -2px; }
+  .fb-hunter-badge .fb-h-tag { font-size: 9px; padding: 1px 3px; }
+  .fb-hunter-badge .fb-h-probs { font-size: 10px; padding: 1px 4px; }
+  .cell-main { font-size: 14px; }
+  .champ-name { font-size: 64px; }
+}

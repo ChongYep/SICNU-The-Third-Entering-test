@@ -1,0 +1,836 @@
+/* ============================================================================
+ * Persona 5 Authentic Calling Card + Joker's Rebel Knife Pre-Contest Screen
+ * Shown automatically on /board/ while Contest is PENDING; tears away on start!
+ * ============================================================================ */
+
+@font-face {
+  font-family: "P5YouShe";
+  src: url("../p5-resolver/assets/youshe.ttf") format("truetype");
+  font-weight: 400 900;
+  font-display: swap;
+}
+
+:root {
+  --p5cc-red: #e60012;
+  --p5cc-crimson: #9e000c;
+  --p5cc-black: #0a0a0d;
+  --p5cc-white: #f8f6f0;
+  --p5cc-paper: #e8e4da;
+  --p5cc-gold: #ffd400;
+}
+
+html.p5cc-lock,
+body.p5cc-lock {
+  overflow: hidden !important;
+}
+
+/* Fullscreen Pre-Contest Stage */
+#p5CallingCardOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100010;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #0a0608;
+  font-family: "P5YouShe", "Microsoft YaHei", "PingFang SC", sans-serif;
+  user-select: none;
+  opacity: 1;
+  transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#p5CallingCardOverlay.is-dismissing {
+  opacity: 0;
+  transform: scale(1.06);
+  pointer-events: none;
+}
+
+/* Gritty Persona 5 Wall + Spotlight + Halftone + Jagged Comic Border Frame */
+.p5cc-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.p5cc-wall {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 68% 65% at 50% 48%, rgba(168, 8, 22, 0.42) 0%, rgba(28, 6, 10, 0.92) 60%, #070507 100%),
+    repeating-linear-gradient(
+      -28deg,
+      rgba(255, 255, 255, 0.018) 0px,
+      rgba(255, 255, 255, 0.018) 2px,
+      transparent 2px,
+      transparent 16px
+    );
+}
+
+.p5cc-halftone {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(230, 0, 18, 0.24) 1.6px, transparent 1.9px);
+  background-size: 14px 14px;
+  mask-image: radial-gradient(circle at 50% 50%, transparent 28%, black 88%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent 28%, black 88%);
+}
+
+/* Dramatic Diagonal P5 Background Slashes */
+.p5cc-slash-a,
+.p5cc-slash-b {
+  position: absolute;
+  pointer-events: none;
+}
+
+.p5cc-slash-a {
+  width: 145vw;
+  height: 180px;
+  left: -20vw;
+  top: 12vh;
+  background: linear-gradient(90deg, transparent 0%, rgba(230, 0, 18, 0.22) 25%, rgba(10, 10, 13, 0.86) 55%, rgba(230, 0, 18, 0.16) 100%);
+  border-top: 3px solid rgba(248, 246, 240, 0.12);
+  border-bottom: 4px solid rgba(230, 0, 18, 0.35);
+  transform: rotate(-11deg);
+}
+
+.p5cc-slash-b {
+  width: 145vw;
+  height: 110px;
+  left: -18vw;
+  bottom: 9vh;
+  background: rgba(10, 10, 13, 0.85);
+  border-top: 3px solid rgba(230, 0, 18, 0.42);
+  transform: rotate(7deg);
+}
+
+/* Corner Jagged Comic Framing (Homage to P5 Calling Card Cutscene) */
+.p5cc-corner-frame {
+  position: absolute;
+  inset: 18px;
+  pointer-events: none;
+  border: 2px solid rgba(248, 246, 240, 0.08);
+}
+
+.p5cc-corner-frame::before,
+.p5cc-corner-frame::after {
+  content: "";
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  pointer-events: none;
+}
+
+.p5cc-corner-frame::before {
+  top: -4px;
+  left: -4px;
+  border-top: 6px solid var(--p5cc-red);
+  border-left: 6px solid var(--p5cc-white);
+  transform: skewX(-12deg);
+}
+
+.p5cc-corner-frame::after {
+  bottom: -4px;
+  right: -4px;
+  border-bottom: 6px solid var(--p5cc-red);
+  border-right: 6px solid var(--p5cc-white);
+  transform: skewX(-12deg);
+}
+
+/* Floating Phantom Stars */
+.p5cc-star {
+  position: absolute;
+  color: var(--p5cc-red);
+  opacity: 0.28;
+  font-size: 34px;
+  text-shadow: 3px 3px 0 #000;
+  animation: p5ccStarFloat 6.5s ease-in-out infinite alternate;
+}
+
+.p5cc-star.s1 { top: 10%; left: 7%; font-size: 46px; color: var(--p5cc-white); opacity: 0.16; animation-delay: 0s; }
+.p5cc-star.s2 { top: 20%; right: 8%; font-size: 56px; color: var(--p5cc-red); opacity: 0.34; animation-delay: -1.8s; }
+.p5cc-star.s3 { bottom: 16%; left: 10%; font-size: 40px; color: var(--p5cc-red); opacity: 0.28; animation-delay: -3.2s; }
+.p5cc-star.s4 { bottom: 13%; right: 11%; font-size: 32px; color: var(--p5cc-gold); opacity: 0.22; animation-delay: -0.9s; }
+
+@keyframes p5ccStarFloat {
+  from { transform: translateY(0px) rotate(-14deg) scale(0.95); }
+  to { transform: translateY(-14px) rotate(12deg) scale(1.08); }
+}
+
+/* ============================================================================
+ * Two-Card Authentic Persona 5 Calling Card Assembly
+ * ============================================================================ */
+.p5cc-stage {
+  position: relative;
+  width: min(1080px, 94vw);
+  padding: 96px 40px 44px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.p5cc-card-cluster {
+  position: relative;
+  width: min(860px, 86vw);
+  transform-origin: 82% 8%;
+}
+
+.p5cc-card-cluster.is-impact {
+  animation: p5ccCardImpact 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes p5ccCardImpact {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  22% { transform: translate(-7px, 8px) rotate(-1.3deg); }
+  48% { transform: translate(5px, -4px) rotate(0.8deg); }
+  74% { transform: translate(-2px, 2px) rotate(-0.3deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* Back Card (Official Concentric Rings + Phantom Thieves Logo + TAKE YOUR HEART) */
+.p5cc-back-card {
+  position: absolute;
+  top: -128px;
+  left: -132px;
+  width: 332px;
+  height: 232px;
+  transform: rotate(-16deg);
+  background:
+    repeating-radial-gradient(
+      circle at 46% 46%,
+      #d60012 0px,
+      #d60012 22px,
+      #0a0a0d 22px,
+      #0a0a0d 44px
+    );
+  border: 5px solid var(--p5cc-white);
+  box-shadow: 12px 16px 34px rgba(0, 0, 0, 0.88), 0 0 0 3px #000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 14px 18px 14px 26px;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.p5cc-back-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 42% 42%, transparent 35%, rgba(0, 0, 0, 0.45) 100%);
+  pointer-events: none;
+}
+
+.p5cc-pt-logo {
+  position: relative;
+  z-index: 2;
+  width: 156px;
+  height: auto;
+  filter: drop-shadow(0 0 2px #fff) drop-shadow(4px 6px 0 rgba(0, 0, 0, 0.92));
+  transform: rotate(3deg);
+  margin: 4px 0 0 8px;
+}
+
+.p5cc-take-heart {
+  position: relative;
+  z-index: 2;
+  font-family: "P5YouShe", Impact, "Arial Black", sans-serif;
+  font-size: 21px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: var(--p5cc-white);
+  background: var(--p5cc-black);
+  border: 2.5px solid var(--p5cc-white);
+  padding: 1px 10px;
+  transform: skewX(-12deg) rotate(-2deg);
+  box-shadow: 4px 4px 0 var(--p5cc-red);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Front Calling Card (Original Persona 5 Concentric Red/Black Bullseye Rings!) */
+.p5cc-front-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 472px;
+  padding: 46px 56px 30px 56px;
+  transform: rotate(-2deg);
+  background:
+    radial-gradient(rgba(0, 0, 0, 0.16) 1px, transparent 1.4px) 0 0 / 6px 6px,
+    repeating-radial-gradient(
+      circle at 49% 47%,
+      #e60012 0px,
+      #e60012 36px,
+      #0c0c10 36px,
+      #0c0c10 72px
+    );
+  border: 6px solid var(--p5cc-white);
+  box-shadow:
+    0 0 0 4px #000,
+    22px 28px 58px rgba(0, 0, 0, 0.92),
+    -8px -6px 32px rgba(230, 0, 18, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Subtle paper edge shading + diagonal spotlight sheen */
+.p5cc-front-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 40%, rgba(0, 0, 0, 0.28) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.p5cc-card-body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Top Salutation Row (Ransom Cutouts — Single Crisp Line) */
+.p5cc-salutation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 3px 3px;
+  padding: 0 72px 0 24px;
+}
+
+/* Giant Hero Ransom Title */
+.p5cc-headline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4px 4px;
+  margin: 2px 0 4px 0;
+}
+
+/* Authentic Ransom-Note Cutout Tiles (4 Newsprint Variants just like original P5!) */
+.p5cc-rword {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.p5cc-rspace {
+  display: inline-block;
+  width: 8px;
+}
+
+.p5cc-rch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "P5YouShe", "Microsoft YaHei", sans-serif;
+  font-weight: 900;
+  line-height: 1.04;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.88);
+  position: relative;
+}
+
+/* Salutation size */
+.p5cc-salutation .p5cc-rch {
+  font-size: clamp(16px, 1.85vw, 23px);
+  padding: 3px 6px;
+}
+
+/* Hero Headline size */
+.p5cc-headline .p5cc-rch {
+  font-size: clamp(30px, 4.1vw, 52px);
+  padding: 5px 10px;
+  box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.94);
+}
+
+/* 4 Classic Persona 5 Magazine/Newspaper Cutout Styles */
+.p5cc-rch.v0 {
+  background: var(--p5cc-black);
+  color: var(--p5cc-white);
+  border: 2px solid var(--p5cc-white);
+}
+
+.p5cc-rch.v1 {
+  background: var(--p5cc-white);
+  color: var(--p5cc-black);
+  border: 2px solid var(--p5cc-black);
+}
+
+.p5cc-rch.v2 {
+  background:
+    repeating-linear-gradient(90deg, #1b1b21 0px, #1b1b21 3px, #2b2b34 3px, #2b2b34 6px);
+  color: var(--p5cc-white);
+  border: 2px solid #d9d6ce;
+}
+
+.p5cc-rch.v3 {
+  background: #dedad0;
+  color: var(--p5cc-black);
+  border: 2px solid var(--p5cc-black);
+}
+
+.p5cc-rch.accent {
+  background: var(--p5cc-red);
+  color: var(--p5cc-white);
+  border: 2.5px solid var(--p5cc-white);
+}
+
+/* Calling Card Manifesto Lines (Newspaper Cutout Strips) */
+.p5cc-manifesto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 6px 0;
+  width: 100%;
+}
+
+.p5cc-mline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+}
+
+.p5cc-mline .p5cc-rch {
+  font-size: clamp(12px, 1.32vw, 17px);
+  padding: 2px 4.5px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.85);
+}
+
+/* Live Countdown Plaque (High-Contrast P5 Royal Black-Gold-White Cutout) */
+.p5cc-countdown-box {
+  position: relative;
+  z-index: 2;
+  margin-top: 4px;
+  background: rgba(10, 10, 14, 0.95);
+  border: 4px solid var(--p5cc-white);
+  box-shadow: 7px 7px 0 var(--p5cc-gold), 11px 11px 0 #000;
+  transform: skewX(-7deg);
+  padding: 12px 28px 10px 28px;
+  width: min(680px, 100%);
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.p5cc-countdown-box > * {
+  transform: skewX(7deg);
+}
+
+.p5cc-cd-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--p5cc-gold);
+  text-transform: uppercase;
+}
+
+.p5cc-cd-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--p5cc-red);
+  box-shadow: 0 0 10px var(--p5cc-red);
+  animation: p5ccPulseDot 1s ease-in-out infinite;
+}
+
+@keyframes p5ccPulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.65; }
+}
+
+.p5cc-cd-clock {
+  font-family: "P5YouShe", Impact, "Consolas", monospace;
+  font-size: clamp(36px, 5.2vw, 64px);
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: var(--p5cc-white);
+  line-height: 1.05;
+  text-shadow: 4px 4px 0 var(--p5cc-red), -1px -1px 0 #000;
+  font-variant-numeric: tabular-nums;
+}
+
+.p5cc-countdown-box.is-final-minute .p5cc-cd-clock {
+  color: var(--p5cc-gold);
+  animation: p5ccFinalPulse 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes p5ccFinalPulse {
+  from { transform: skewX(7deg) scale(1); }
+  to { transform: skewX(7deg) scale(1.06); }
+}
+
+.p5cc-cd-meta {
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+  font-size: clamp(11px, 1.15vw, 14px);
+  font-weight: 700;
+  color: #dcd8ce;
+  letter-spacing: 0.8px;
+  text-align: center;
+}
+
+/* Signature Footer inside Calling Card */
+.p5cc-footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 2px;
+}
+
+.p5cc-contest-pill {
+  background: var(--p5cc-black);
+  color: var(--p5cc-gold);
+  border: 2px solid var(--p5cc-gold);
+  padding: 4px 11px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transform: skewX(-10deg);
+  box-shadow: 3px 3px 0 #000;
+}
+
+.p5cc-contest-pill span {
+  display: inline-block;
+  transform: skewX(10deg);
+}
+
+.p5cc-signature {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2px;
+}
+
+.p5cc-signature .p5cc-rch {
+  font-size: clamp(12px, 1.3vw, 17px);
+  padding: 2px 5px;
+}
+
+/* ============================================================================
+ * ICONIC JOKER'S REBEL KNIFE (DAGGER) PINNING STRAIGHT THROUGH THE CARD!
+ * 3D Depth: Tip is clipped cleanly behind the torn paper puncture slit!
+ * ============================================================================ */
+.p5cc-dagger-assembly {
+  position: absolute;
+  top: -192px;
+  right: -112px;
+  width: 330px;
+  height: 330px;
+  z-index: 12;
+  pointer-events: none;
+}
+
+/* Dark Jagged Paper Puncture Slit right where the steel blade pierces the card */
+.p5cc-puncture-slit {
+  position: absolute;
+  left: 52px;
+  bottom: 70px;
+  width: 82px;
+  height: 44px;
+  z-index: 13;
+  pointer-events: none;
+}
+
+/* Subtle lifted torn paper lip overlapping the very entry line for true 3D depth */
+.p5cc-paper-lip {
+  position: absolute;
+  left: 42px;
+  bottom: 66px;
+  width: 74px;
+  height: 32px;
+  z-index: 16;
+  pointer-events: none;
+}
+
+/* Cast Shadow of the protruding hilt falling onto the Calling Card surface */
+.p5cc-dagger-shadow {
+  position: absolute;
+  left: 84px;
+  bottom: 42px;
+  width: 215px;
+  height: 42px;
+  background: radial-gradient(ellipse at 25% 50%, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.36) 58%, transparent 82%);
+  transform: rotate(-16deg);
+  filter: blur(4px);
+  z-index: 11;
+  opacity: 0;
+  animation: p5ccShadowSnap 0.42s ease-out 0.14s forwards;
+}
+
+@keyframes p5ccShadowSnap {
+  0% { opacity: 0; transform: rotate(-16deg) translate(32px, -24px) scale(0.7); }
+  100% { opacity: 1; transform: rotate(-16deg) translate(0, 0) scale(1); }
+}
+
+/* Impact Burst Flash at the exact stab wound */
+.p5cc-stab-flash {
+  position: absolute;
+  left: 34px;
+  bottom: 46px;
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(255, 212, 0, 0.75) 26%, rgba(230, 0, 18, 0.55) 52%, transparent 72%);
+  z-index: 17;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.p5cc-stab-flash.is-burst {
+  animation: p5ccFlashPop 0.44s ease-out forwards;
+}
+
+@keyframes p5ccFlashPop {
+  0% { opacity: 0; transform: scale(0.2); }
+  22% { opacity: 1; transform: scale(1.25); }
+  100% { opacity: 0; transform: scale(1.75); }
+}
+
+/* Clipped Dagger Window: Bottom ~28% blade tip cleanly disappears BEHIND the tear slit! */
+.p5cc-dagger-clip {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  /* Diagonal cut running directly through the torn paper slit at (x=88, y=242) */
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 44% 82%, 14% 70%);
+  pointer-events: none;
+}
+
+.p5cc-dagger-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(8px 14px 10px rgba(0, 0, 0, 0.72));
+  transform-origin: center;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.p5cc-dagger-img.is-stabbing {
+  animation: p5ccDaggerStab 0.36s cubic-bezier(0.18, 0.95, 0.3, 1.02) forwards;
+}
+
+@keyframes p5ccDaggerStab {
+  0% {
+    transform: translate(190px, -190px) scale(1.22);
+    opacity: 0.25;
+  }
+  70% {
+    transform: translate(-6px, 6px) scale(0.99);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 1;
+  }
+}
+
+/* ============================================================================
+ * Discreet Operator / Proctor Corner Controls
+ * ============================================================================ */
+.p5cc-controls {
+  position: fixed;
+  left: 20px;
+  right: 20px;
+  bottom: 16px;
+  z-index: 100015;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.p5cc-sync-pill {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(10, 10, 14, 0.82);
+  border: 1.5px solid rgba(248, 246, 240, 0.3);
+  color: #dcd8ce;
+  font-family: "Microsoft YaHei", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  transform: skewX(-10deg);
+}
+
+.p5cc-sync-pill > * {
+  transform: skewX(10deg);
+}
+
+.p5cc-sync-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #27d962;
+  box-shadow: 0 0 8px #27d962;
+}
+
+.p5cc-action-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: auto;
+}
+
+.p5cc-mini-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: rgba(10, 10, 14, 0.88);
+  color: var(--p5cc-white);
+  border: 2px solid rgba(248, 246, 240, 0.55);
+  box-shadow: 3px 3px 0 #000;
+  font-family: "Microsoft YaHei", sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+  transform: skewX(-10deg);
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
+}
+
+.p5cc-mini-btn span {
+  transform: skewX(10deg);
+}
+
+.p5cc-mini-btn:hover {
+  background: var(--p5cc-red);
+  border-color: var(--p5cc-gold);
+  transform: skewX(-10deg) translateY(-1px);
+}
+
+/* Re-open Calling Card Pill (shown ONLY if operator manually clicked "查看原外榜" while pending) */
+#p5ccReopenBtn {
+  position: fixed;
+  left: 18px;
+  bottom: 16px;
+  z-index: 99992;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 15px;
+  background: var(--p5cc-red);
+  color: var(--p5cc-white);
+  border: 2px solid var(--p5cc-gold);
+  box-shadow: 4px 4px 0 #000;
+  font-family: "Microsoft YaHei", sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+  transform: skewX(-10deg);
+}
+
+#p5ccReopenBtn span {
+  transform: skewX(10deg);
+}
+
+#p5ccReopenBtn:hover {
+  background: #ff1428;
+}
+
+/* ============================================================================
+ * Responsive Adaptation (Laptop 1280x720 + Mobile Portrait Phones!)
+ * ============================================================================ */
+@media (max-width: 1280px) {
+  .p5cc-front-card {
+    min-height: 410px;
+    padding: 28px 36px 24px 36px;
+  }
+  .p5cc-back-card {
+    width: 268px;
+    height: 186px;
+    top: -62px;
+    left: -40px;
+  }
+  .p5cc-pt-logo { width: 122px; margin: 2px 0 0 6px; }
+  .p5cc-take-heart { font-size: 18px; }
+  .p5cc-dagger-assembly {
+    width: 265px;
+    height: 265px;
+    top: -148px;
+    right: -78px;
+  }
+  .p5cc-puncture-slit { left: 40px; bottom: 54px; width: 68px; height: 36px; }
+  .p5cc-paper-lip { left: 32px; bottom: 50px; width: 60px; height: 26px; }
+  .p5cc-dagger-shadow { left: 66px; bottom: 32px; width: 172px; height: 34px; }
+}
+
+@media (max-width: 768px) {
+  .p5cc-stage {
+    width: 98vw;
+    padding: 88px 10px 66px 10px;
+  }
+  .p5cc-card-cluster {
+    width: 92vw;
+  }
+  .p5cc-back-card {
+    width: 174px;
+    height: 126px;
+    top: -82px;
+    left: 2px;
+    padding: 8px 10px 8px 14px;
+    border-width: 3px;
+    transform: rotate(-11deg);
+  }
+  .p5cc-pt-logo { width: 84px; margin: 2px 0 0 4px; }
+  .p5cc-take-heart { font-size: 11px; padding: 1px 6px; }
+  .p5cc-front-card {
+    min-height: auto;
+    padding: 26px 14px 18px 14px;
+    border-width: 4px;
+    transform: rotate(-0.8deg);
+    gap: 10px;
+  }
+  .p5cc-salutation { padding: 0 36px 0 4px; }
+  .p5cc-salutation .p5cc-rch { font-size: 12.5px; padding: 2px 4px; }
+  .p5cc-headline .p5cc-rch { font-size: 23px; padding: 3px 6px; }
+  .p5cc-mline .p5cc-rch { font-size: 11px; padding: 1.5px 3.5px; }
+  .p5cc-countdown-box { padding: 10px 12px; border-width: 3px; }
+  .p5cc-cd-label { font-size: 10.5px; letter-spacing: 1px; }
+  .p5cc-cd-clock { font-size: 30px; letter-spacing: 2px; }
+  .p5cc-cd-meta { font-size: 10.5px; }
+  .p5cc-footer { flex-direction: column; gap: 8px; }
+  .p5cc-signature { justify-content: center; }
+  .p5cc-signature .p5cc-rch { font-size: 11px; padding: 1.5px 3.5px; }
+  .p5cc-dagger-assembly {
+    width: 142px;
+    height: 142px;
+    top: -86px;
+    right: -4px;
+  }
+  .p5cc-puncture-slit { left: 22px; bottom: 28px; width: 38px; height: 20px; }
+  .p5cc-paper-lip { left: 17px; bottom: 26px; width: 32px; height: 15px; }
+  .p5cc-dagger-shadow { left: 36px; bottom: 16px; width: 92px; height: 18px; }
+  .p5cc-controls { left: 10px; right: 10px; bottom: 10px; }
+  .p5cc-sync-pill { display: none; }
+}
