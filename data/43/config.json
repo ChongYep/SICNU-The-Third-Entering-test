@@ -24,7 +24,7 @@
     "official": "考核",
     "unofficial": "打星"
   },
-  "organization": "类别",
+  "organization": "考场",
   "status_time_display": {
     "correct": 1,
     "incorrect": 1,
